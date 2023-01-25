@@ -10,12 +10,12 @@ namespace ETicaretAPI.Application.Repositories
 {
     public interface IReadRepository<T>:IRepository<T> where T : BaseEntity
     {
-        IQueryable<T> GetAll(); //List bir IEnumarable dır. Yani inmemory'e çeker verileri onun üzerinde işlem yapar.
+        IQueryable<T> GetAll(bool tracking=true); //List bir IEnumarable dır. Yani inmemory'e çeker verileri onun üzerinde işlem yapar.
                                 //IQueryable sorgularda yazdığımız where şartları veya select sorguları vs ilgili veritabanı sorgusuna eklenecektir.
-        IQueryable<T> GetWhere(Expression<Func<T,bool>>method);
+        IQueryable<T> GetWhere(Expression<Func<T,bool>>method, bool tracking = true);
 
-        Task<T> GetSingleAsync(Expression<Func<T,bool>>method);
-        Task<T> GetByIdAsync(string id);
+        Task<T> GetSingleAsync(Expression<Func<T,bool>>method, bool tracking = true);
+        Task<T> GetByIdAsync(string id, bool tracking = true);
 
     }
 }
